@@ -17,7 +17,7 @@
   --gold: #d2ab67;
   --page-max: 80rem;
   --page-margin: 2rem;
-  --section-space: 7rem;
+  --section-space: 4.5rem;
   --radius-control: 0.25rem;
   --radius-surface: 0.75rem;
 }
@@ -183,10 +183,10 @@ img {
   align-items: center;
   justify-content: center;
   gap: 0.55rem;
-  border: 1px solid var(--line);
+  border: 1px solid var(--button-active);
   border-radius: var(--radius-control);
-  background: var(--surface);
-  color: var(--ink);
+  background: var(--button-active);
+  color: var(--on-button);
   cursor: pointer;
   font-size: 13px;
   font-weight: 500;
@@ -228,7 +228,7 @@ img {
   display: grid;
   min-height: min(730px, calc(100svh - 76px));
   grid-template-columns: 1.05fr 0.8fr;
-  align-items: center;
+  align-items: start;
   gap: clamp(3rem, 8vw, 8rem);
   padding-block: 4.5rem;
 }
@@ -290,6 +290,7 @@ img {
   justify-content: center;
   border: 1px solid transparent;
   border-radius: var(--radius-control);
+  color: var(--on-button);
   padding: 0.65rem 1.2rem;
   font-size: 14px;
   font-weight: 600;
@@ -317,19 +318,21 @@ img {
 }
 
 .button-secondary {
-  border-color: var(--line);
-  background: var(--surface);
-  color: var(--ink);
+  border-color: var(--button-active);
+  background: var(--button-active);
 }
 
 .button-secondary:hover {
-  border-color: var(--accent-text);
+  border-color: var(--button-hover);
+  background: var(--button-hover);
 }
 
 .hero-note {
   margin: 1.5rem 0 0;
+  border-left: 2px solid var(--accent);
   color: var(--muted);
   font-size: 13px;
+  padding-left: 0.85rem;
 }
 
 .portrait-block {
@@ -343,14 +346,26 @@ img {
   position: relative;
   overflow: hidden;
   aspect-ratio: 4 / 5;
-  border: 1px solid var(--line);
+  border: 1px solid var(--gold);
   border-radius: var(--radius-surface);
   background: var(--surface);
+  box-shadow: 0 18px 44px rgb(35 31 32 / 12%);
+  transition: transform 360ms cubic-bezier(0.2, 0.7, 0.25, 1), box-shadow 360ms ease;
+}
+
+.portrait-block:hover .portrait-frame {
+  transform: translateY(-4px);
+  box-shadow: 0 24px 54px rgb(35 31 32 / 18%);
 }
 
 .portrait-image {
   object-fit: cover;
   object-position: center 24%;
+  transition: transform 700ms cubic-bezier(0.2, 0.7, 0.25, 1);
+}
+
+.portrait-block:hover .portrait-image {
+  transform: scale(1.025);
 }
 
 .portrait-block figcaption {
@@ -455,6 +470,23 @@ img {
 
 .orch-screen img {
   object-fit: cover;
+  transition: transform 600ms cubic-bezier(0.2, 0.7, 0.25, 1);
+}
+
+.orch-screen:hover,
+.orch-screen:focus-visible {
+  transform: translateY(-4px);
+  box-shadow: 0 24px 48px rgb(35 31 32 / 16%);
+}
+
+.orch-screen,
+.orch-screen:focus-visible {
+  transition: transform 300ms cubic-bezier(0.2, 0.7, 0.25, 1), box-shadow 300ms ease;
+}
+
+.orch-screen:hover img,
+.orch-screen:focus-visible img {
+  transform: scale(1.025);
 }
 
 .orch-screen-main {
@@ -483,7 +515,7 @@ img {
 
 .section-heading {
   max-width: 700px;
-  margin-bottom: 2.5rem;
+  margin-bottom: 1.75rem;
 }
 
 .section-heading h2 {
@@ -522,7 +554,8 @@ img {
   background: var(--surface-muted);
 }
 
-.project-card:hover {
+.project-card:hover,
+.project-card:focus-within {
   transform: translateY(-3px);
   border-color: var(--accent-text);
 }
@@ -536,6 +569,12 @@ img {
 
 .project-image img {
   object-fit: cover;
+  transition: transform 600ms cubic-bezier(0.2, 0.7, 0.25, 1);
+}
+
+.project-card:hover .project-image img,
+.project-card:focus-within .project-image img {
+  transform: scale(1.035);
 }
 
 .project-card-copy {
@@ -617,12 +656,12 @@ img {
 }
 
 .button-inverse {
-  background: var(--surface);
-  color: var(--button-active);
+  background: var(--button-active);
+  color: var(--on-button);
 }
 
 .button-inverse:hover {
-  background: var(--accent-soft);
+  background: var(--button-hover);
 }
 
 .site-footer {
@@ -672,6 +711,45 @@ img {
   }
 }
 
+@keyframes section-reveal {
+  from {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes card-reveal {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@supports (animation-timeline: view()) {
+  @media (prefers-reduced-motion: no-preference) {
+    .featured-copy,
+    .orch-gallery,
+    .about-layout > *,
+    .contact-layout > * {
+      animation: section-reveal 600ms cubic-bezier(0.16, 1, 0.3, 1) both;
+      animation-timeline: view();
+      animation-range: entry 0% entry 35%;
+    }
+
+    .project-card {
+      animation: card-reveal 600ms ease both;
+      animation-timeline: view();
+      animation-range: entry 0% entry 35%;
+    }
+  }
+}
+
 @media (prefers-reduced-motion: no-preference) {
   html:focus-within {
     scroll-behavior: smooth;
@@ -681,7 +759,7 @@ img {
 @media (max-width: 960px) {
   :root {
     --page-margin: 1.5rem;
-    --section-space: 5.5rem;
+    --section-space: 4rem;
   }
 
   .hero-layout {
@@ -709,7 +787,7 @@ img {
 @media (max-width: 760px) {
   :root {
     --page-margin: 1rem;
-    --section-space: 4.5rem;
+    --section-space: 3.25rem;
   }
 
   .site-header__inner {

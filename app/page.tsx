@@ -8,7 +8,7 @@ const projects = [
     description:
       "Landmark directions and boda fare guidance for a defined part of Kampala. Built around how people actually explain a route.",
     demo: "https://visit-kla.vercel.app",
-    source: "https://github.com/iranziresponse-hue/VisitKla",
+    source: "https://github.com/iranziresponse/VisitKla",
     image: "/images/visitkla-boda.png",
     imageAlt: "Boda rider artwork from the VisitKla project",
   },
@@ -18,14 +18,14 @@ const projects = [
     description:
       "A community map for sharing and checking local power status, with reports tied to where people are.",
     demo: "https://lumela-self.vercel.app",
-    source: "https://github.com/iranziresponse-hue/lumela",
+    source: "https://github.com/iranziresponse/lumela",
   },
   {
     name: "Nuru",
     type: "Document workflow",
     description:
       "Invoice and statement extraction with OCR and human review. Its evaluation is candid about the gap between synthetic tests and real receipts.",
-    source: "https://github.com/iranziresponse-hue/Nuru",
+    source: "https://github.com/iranziresponse/Nuru",
   },
   {
     name: "studyBuddy",
@@ -33,7 +33,7 @@ const projects = [
     description:
       "An AI study companion exploring tutoring, document analysis, and academic planning in one study flow.",
     demo: "https://v0-study-buddy-setup.vercel.app",
-    source: "https://github.com/iranziresponse-hue/studyBuddy",
+    source: "https://github.com/iranziresponse/studyBuddy",
   },
 ];
 
@@ -91,7 +91,7 @@ export default function Home() {
               </div>
               <div className="featured-actions">
                 <a className="text-link" href="https://orch.spriteteam.com">Visit Orch</a>
-                <a className="text-link" href="https://github.com/iranziresponse-hue/file-organizer">Explore the source</a>
+                <a className="text-link" href="https://github.com/iranziresponse/file-organizer">Explore the source</a>
               </div>
             </div>
             <div className="orch-gallery">
@@ -177,7 +177,7 @@ export default function Home() {
           <a className="footer-name" href="#top">Response Iranzi</a>
           <p>Software engineering student at Makerere University, Kampala.</p>
           <div className="footer-links">
-            <a href="https://github.com/iranziresponse-hue">GitHub</a>
+            <a href="https://github.com/iranziresponse">GitHub</a>
             <a href="https://www.linkedin.com/in/iranzi-response-428136382">LinkedIn</a>
             <a href="https://orch.spriteteam.com">Orch</a>
           </div>
