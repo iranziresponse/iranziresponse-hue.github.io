@@ -469,7 +469,7 @@ img {
 }
 
 .orch-screen img {
-  object-fit: cover;
+  object-fit: contain;
   transition: transform 600ms cubic-bezier(0.2, 0.7, 0.25, 1);
 }
 
@@ -490,11 +490,13 @@ img {
 }
 
 .orch-screen-main {
-  aspect-ratio: 16 / 11;
+  aspect-ratio: 1280 / 1500;
+  background: var(--surface-muted);
 }
 
 .orch-screen-secondary {
-  aspect-ratio: 4 / 5;
+  aspect-ratio: 1280 / 1300;
+  background: var(--surface-muted);
 }
 
 .image-caption {
@@ -515,17 +517,20 @@ img {
 
 .section-heading {
   max-width: 700px;
-  margin-bottom: 1.75rem;
+  margin: 0 auto 1.75rem;
+  text-align: center;
 }
 
 .section-heading h2 {
   max-width: 15ch;
+  margin-inline: auto;
 }
 
 .section-heading p {
   max-width: 58ch;
   margin: 0.9rem 0 0;
   color: var(--muted);
+  margin-inline: auto;
 }
 
 .project-grid {
@@ -535,12 +540,28 @@ img {
 }
 
 .project-card {
+  position: relative;
+  isolation: isolate;
   grid-column: span 6;
   overflow: hidden;
   border: 1px solid var(--line);
   border-radius: var(--radius-surface);
   background: var(--surface);
-  transition: border-color 180ms ease, transform 180ms ease;
+  transition: border-color 240ms ease, transform 360ms cubic-bezier(0.2, 0.7, 0.25, 1), box-shadow 360ms ease;
+}
+
+.project-card::before {
+  position: absolute;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  transform: scaleX(0);
+  transform-origin: left;
+  background: var(--accent);
+  content: "";
+  transition: transform 420ms cubic-bezier(0.2, 0.7, 0.25, 1);
 }
 
 .project-card:nth-child(1),
@@ -556,29 +577,178 @@ img {
 
 .project-card:hover,
 .project-card:focus-within {
-  transform: translateY(-3px);
+  transform: translateY(-7px);
   border-color: var(--accent-text);
+  box-shadow: 0 22px 44px color-mix(in srgb, var(--button) 16%, transparent);
 }
 
-.project-image {
+.project-card:hover::before,
+.project-card:focus-within::before {
+  transform: scaleX(1);
+}
+
+.project-gallery {
+  margin: 0;
+  border-bottom: 1px solid var(--line);
+  background: var(--surface-muted);
+}
+
+.project-gallery-stage {
   position: relative;
   aspect-ratio: 16 / 8;
   overflow: hidden;
-  background: var(--accent-soft);
+  isolation: isolate;
+  background:
+    radial-gradient(ellipse at 18% 15%, color-mix(in srgb, var(--accent) 10%, transparent), transparent 58%),
+    var(--surface-muted);
 }
 
-.project-image img {
-  object-fit: cover;
-  transition: transform 600ms cubic-bezier(0.2, 0.7, 0.25, 1);
+.project-gallery-image {
+  z-index: 0;
+  opacity: 0;
+  transform: scale(1.025);
+  transition: opacity 720ms cubic-bezier(0.2, 0.7, 0.25, 1), transform 900ms cubic-bezier(0.2, 0.7, 0.25, 1);
 }
 
-.project-card:hover .project-image img,
-.project-card:focus-within .project-image img {
+.project-gallery-image.is-active {
+  z-index: 1;
+  opacity: 1;
+  transform: scale(1);
+}
+
+.project-card:hover .project-gallery-image.is-active,
+.project-card:focus-within .project-gallery-image.is-active {
   transform: scale(1.035);
 }
 
+.project-gallery-shade {
+  position: absolute;
+  z-index: 2;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  height: 36%;
+  background: linear-gradient(transparent, rgb(18 16 17 / 60%));
+  pointer-events: none;
+}
+
+.project-gallery-caption {
+  position: absolute;
+  z-index: 3;
+  bottom: 1rem;
+  left: 1.1rem;
+  max-width: calc(100% - 12rem);
+  color: #ffffff;
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 1.35;
+  text-align: left;
+  text-shadow: 0 1px 8px rgb(0 0 0 / 35%);
+}
+
+.project-gallery-controls {
+  position: absolute;
+  z-index: 4;
+  right: 0.75rem;
+  bottom: 0.65rem;
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  border: 1px solid rgb(255 255 255 / 25%);
+  border-radius: 999px;
+  background: rgb(18 16 17 / 65%);
+  padding: 0.25rem;
+  backdrop-filter: blur(12px);
+}
+
+.project-gallery-controls > button {
+  display: grid;
+  width: 28px;
+  height: 28px;
+  place-items: center;
+  border: 0;
+  border-radius: 50%;
+  background: transparent;
+  color: #ffffff;
+  cursor: pointer;
+}
+
+.project-gallery-controls > button:hover,
+.project-gallery-controls > button:focus-visible {
+  background: rgb(255 255 255 / 18%);
+}
+
+.project-gallery-controls > button > span {
+  font-size: 22px;
+  line-height: 1;
+}
+
+.project-gallery-pause svg {
+  width: 13px;
+  height: 13px;
+  fill: currentColor;
+  stroke: currentColor;
+  stroke-linecap: round;
+  stroke-width: 2;
+}
+
+.project-gallery-dots {
+  display: flex;
+  align-items: center;
+  gap: 0.28rem;
+  padding-inline: 0.1rem;
+}
+
+.project-gallery-dots button {
+  width: 6px;
+  height: 6px;
+  border: 0;
+  border-radius: 999px;
+  background: rgb(255 255 255 / 48%);
+  cursor: pointer;
+  padding: 0;
+  transition: width 240ms ease, background-color 240ms ease;
+}
+
+.project-gallery-dots button.is-active {
+  width: 18px;
+  background: #ffffff;
+}
+
+.project-gallery-meta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.55rem 1rem;
+  color: var(--muted);
+  font-size: 10px;
+  font-weight: 600;
+}
+
+.project-gallery-meta span:last-child {
+  font-variant-numeric: tabular-nums;
+}
+
 .project-card-copy {
+  position: relative;
   padding: 1.5rem 1.6rem 1.65rem;
+  text-align: center;
+}
+
+.project-index {
+  display: block;
+  margin-bottom: 0.6rem;
+  color: var(--muted);
+  font-size: 10px;
+  font-weight: 600;
+  transform: translateY(0);
+  transition: color 240ms ease, transform 360ms cubic-bezier(0.2, 0.7, 0.25, 1);
+}
+
+.project-card:hover .project-index,
+.project-card:focus-within .project-index {
+  color: var(--accent-text);
+  transform: translateY(-3px);
 }
 
 .project-type {
@@ -595,13 +765,15 @@ img {
 
 .project-card-copy > p:not(.project-type) {
   min-height: 5.2rem;
-  margin: 0.75rem 0 1.25rem;
+  max-width: 55ch;
+  margin: 0.75rem auto 1.25rem;
   color: var(--muted);
   font-size: 14px;
   line-height: 1.7;
 }
 
 .project-links {
+  justify-content: center;
   gap: 1.25rem;
 }
 

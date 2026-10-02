@@ -1,4 +1,5 @@
 import Image from "next/image";
+import { ProjectGallery, type ProjectSlide } from "./project-gallery";
 import { SiteHeader } from "./site-controls";
 
 const projects = [
@@ -9,8 +10,10 @@ const projects = [
       "Landmark directions and boda fare guidance for a defined part of Kampala. Built around how people actually explain a route.",
     demo: "https://visit-kla.vercel.app",
     source: "https://github.com/iranziresponse/VisitKla",
-    image: "/images/visitkla-boda.png",
-    imageAlt: "Boda rider artwork from the VisitKla project",
+    slides: [
+      { src: "/images/visitkla-boda.png", alt: "VisitKla boda rider artwork", caption: "Landmark-first Kampala routes", fit: "contain" },
+      { src: "/images/visitkla-top.png", alt: "Top view of a boda rider and motorcycle", caption: "Boda mode, route view", fit: "contain" },
+    ] satisfies ProjectSlide[],
   },
   {
     name: "Lumela",
@@ -19,6 +22,10 @@ const projects = [
       "A community map for sharing and checking local power status, with reports tied to where people are.",
     demo: "https://lumela-self.vercel.app",
     source: "https://github.com/iranziresponse/lumela",
+    slides: [
+      { src: "/images/lumela-panel.png", alt: "Lumela power report controls and status", caption: "Community power reports", fit: "contain" },
+      { src: "/images/lumela-status.png", alt: "Lumela live status summary", caption: "Live network status" },
+    ] satisfies ProjectSlide[],
   },
   {
     name: "Nuru",
@@ -26,6 +33,11 @@ const projects = [
     description:
       "Invoice and statement extraction with OCR and human review. Its evaluation is candid about the gap between synthetic tests and real receipts.",
     source: "https://github.com/iranziresponse/Nuru",
+    slides: [
+      { src: "/images/nuru-scan.png", alt: "Nuru document scan screen", caption: "Scan a document" },
+      { src: "/images/nuru-ledger.png", alt: "Nuru searchable document ledger", caption: "A local document ledger" },
+      { src: "/images/nuru-audit.png", alt: "Nuru metadata-only audit trail", caption: "Review the audit trail" },
+    ] satisfies ProjectSlide[],
   },
   {
     name: "studyBuddy",
@@ -34,6 +46,10 @@ const projects = [
       "An AI study companion exploring tutoring, document analysis, and academic planning in one study flow.",
     demo: "https://v0-study-buddy-setup.vercel.app",
     source: "https://github.com/iranziresponse/studyBuddy",
+    slides: [
+      { src: "/images/studybuddy-landing.png", alt: "Study Buddy tutor and planner landing page", caption: "Your AI tutor and study planner" },
+      { src: "/images/studybuddy-features.png", alt: "Study Buddy teaching, PDF analysis, active recall, and timetable features", caption: "Tools for deeper study", fit: "contain" },
+    ] satisfies ProjectSlide[],
   },
 ];
 
@@ -123,20 +139,17 @@ export default function Home() {
               <p>Different problems, one habit: start with what would make someone&apos;s day easier.</p>
             </div>
             <div className="project-grid">
-              {projects.map((project) => (
+              {projects.map((project, index) => (
                 <article className="project-card" key={project.name}>
-                  {project.image && (
-                    <div className="project-image">
-                      <Image src={project.image} alt={project.imageAlt ?? ""} fill sizes="(max-width: 760px) 92vw, 40vw" />
-                    </div>
-                  )}
+                  <ProjectGallery name={project.name} slides={project.slides} />
                   <div className="project-card-copy">
+                    <span className="project-index" aria-hidden="true">PROJECT 0{index + 1}</span>
                     <p className="project-type">{project.type}</p>
                     <h3>{project.name}</h3>
                     <p>{project.description}</p>
                     <div className="project-links">
-                      {project.demo && <a href={project.demo}>Try the demo</a>}
-                      <a href={project.source}>View source</a>
+                      {project.demo && <a href={project.demo} target="_blank" rel="noreferrer">Try the demo</a>}
+                      <a href={project.source} target="_blank" rel="noreferrer">View source</a>
                     </div>
                   </div>
                 </article>
