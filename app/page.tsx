@@ -113,7 +113,7 @@ export default function Home() {
             <div className="orch-gallery">
               <a className="orch-screen orch-screen-main" href="https://orch.spriteteam.com/screenshots.html" aria-label="View Orch screenshots">
                 <Image
-                  src="https://orch.spriteteam.com/assets/img/screenshots/study-home.webp"
+                  src="/images/orch-study-home.webp"
                   alt="Orch study dashboard showing a focus timer, review queue, and activity feed"
                   fill
                   sizes="(max-width: 760px) 92vw, 55vw"
@@ -121,7 +121,7 @@ export default function Home() {
               </a>
               <a className="orch-screen orch-screen-secondary" href="https://orch.spriteteam.com/screenshots.html" aria-label="See Orch Project Studio">
                 <Image
-                  src="https://orch.spriteteam.com/assets/img/screenshots/project-studio.webp"
+                  src="/images/orch-project-studio.webp"
                   alt="Orch Project Studio showing engineering projects by status"
                   fill
                   sizes="(max-width: 760px) 72vw, 25vw"
