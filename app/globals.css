@@ -509,52 +509,6 @@ img {
   transition: background-color 350ms ease, border-color 350ms ease;
 }
 
-.project-marquee {
-  position: relative;
-  z-index: 1;
-  overflow: hidden;
-  border-block: 1px solid color-mix(in srgb, var(--line) 76%, transparent);
-  background: var(--surface);
-  color: var(--ink);
-  padding-block: 0.65rem;
-  mask-image: linear-gradient(90deg, transparent, #000 5%, #000 95%, transparent);
-}
-
-.project-marquee__track,
-.project-marquee__group {
-  display: flex;
-  width: max-content;
-  align-items: center;
-}
-
-.project-marquee__track {
-  animation: project-marquee-scroll 48s linear infinite;
-}
-
-.project-marquee__group {
-  gap: clamp(1.5rem, 4vw, 3.5rem);
-  padding-right: clamp(1.5rem, 4vw, 3.5rem);
-}
-
-.project-marquee__group > span {
-  color: var(--accent-text);
-  font-size: 12px;
-  font-weight: 600;
-  white-space: nowrap;
-}
-
-.project-marquee:hover .project-marquee__track {
-  animation-play-state: paused;
-}
-
-.project-marquee__group i {
-  margin-left: 0.4rem;
-  color: var(--muted);
-  font-size: 11px;
-  font-style: normal;
-  font-weight: 400;
-}
-
 .featured-layout {
   display: grid;
   grid-template-columns: 0.8fr 1.1fr;
@@ -1084,12 +1038,6 @@ img {
   to {
     opacity: 1;
     transform: translateY(0);
-  }
-}
-
-@keyframes project-marquee-scroll {
-  to {
-    transform: translateX(-50%);
   }
 }
 

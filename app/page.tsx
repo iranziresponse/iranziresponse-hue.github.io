@@ -60,21 +60,6 @@ export default function Home() {
       <SiteHeader />
       <main id="main">
         <section className="hero-band" id="top" aria-labelledby="hero-title">
-          <section
-            className="project-marquee"
-            aria-label="Things I build: Orch study tools, Nuru document workflows, VisitKla Kampala routes, and Lumela community maps"
-          >
-            <div className="project-marquee__track" aria-hidden="true">
-              {[0, 1].map((copy) => (
-                <div className="project-marquee__group" key={copy}>
-                  <span>Orch <i>Study tools</i></span>
-                  <span>Nuru <i>Document workflows</i></span>
-                  <span>VisitKla <i>Kampala routes</i></span>
-                  <span>Lumela <i>Community maps</i></span>
-                </div>
-              ))}
-            </div>
-          </section>
           <div className="page-container hero-layout">
             <div className="hero-copy">
               <p className="hero-eyebrow">Makerere University <span aria-hidden="true">·</span> Kampala, Uganda</p>
