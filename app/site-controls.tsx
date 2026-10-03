@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { useState, useSyncExternalStore } from "react";
+import { useEffect, useState, useSyncExternalStore } from "react";
 
 const navigation = [
   { href: "#work", label: "Work" },
@@ -35,7 +35,7 @@ export function ThemeToggle() {
     localStorage.setItem("theme", nextTheme);
     document.querySelector('meta[name="theme-color"]')?.setAttribute(
       "content",
-      nextTheme === "dark" ? "#121011" : "#ffffff",
+      nextTheme === "dark" ? "#11120f" : "#f2eee6",
     );
     window.dispatchEvent(new Event("themechange"));
   }
@@ -46,18 +46,39 @@ export function ThemeToggle() {
       type="button"
       aria-label={`Switch to ${dark ? "light" : "dark"} theme`}
       aria-pressed={dark}
+      title={`Switch to ${dark ? "light" : "dark"} theme`}
       onClick={toggleTheme}
     >
       <span className="theme-toggle__track" aria-hidden="true">
-        <span className="theme-toggle__thumb" />
+        <span className="theme-toggle__thumb">
+          {dark ? (
+            <svg viewBox="0 0 16 16">
+              <path d="M13.2 10.1A5.4 5.4 0 0 1 5.9 2.8a5.5 5.5 0 1 0 7.3 7.3Z" />
+            </svg>
+          ) : (
+            <svg viewBox="0 0 16 16">
+              <circle cx="8" cy="8" r="3" />
+              <path d="M8 1.5v1.3m0 10.4v1.3m6.5-6.5h-1.3M2.8 8H1.5m11.1-4.6-.9.9M4.3 11.7l-.9.9m9.2 0-.9-.9M4.3 4.3l-.9-.9" />
+            </svg>
+          )}
+        </span>
       </span>
-      <span>{dark ? "Dark" : "Light"}</span>
+      <span className="theme-toggle__label">{dark ? "Light" : "Dark"}</span>
     </button>
   );
 }
 
 export function SiteHeader() {
   const [menuOpen, setMenuOpen] = useState(false);
+
+  useEffect(() => {
+    function closeMenuOnEscape(event: KeyboardEvent) {
+      if (event.key === "Escape") setMenuOpen(false);
+    }
+
+    window.addEventListener("keydown", closeMenuOnEscape);
+    return () => window.removeEventListener("keydown", closeMenuOnEscape);
+  }, []);
 
   function closeMenu() {
     setMenuOpen(false);
@@ -69,11 +90,11 @@ export function SiteHeader() {
         <a className="wordmark" href="#top" aria-label="Response Iranzi, home">
           <Image
             className="wordmark__mark"
-            src="/images/response.jpg"
+            src="/images/response-closeup.webp"
             alt=""
-            width={34}
-            height={34}
-            sizes="34px"
+            width={40}
+            height={40}
+            sizes="40px"
           />
           <span>Response Iranzi</span>
         </a>
@@ -91,13 +112,20 @@ export function SiteHeader() {
             aria-controls="mobile-navigation"
             onClick={() => setMenuOpen(!menuOpen)}
           >
-            {menuOpen ? "Close" : "Menu"}
+            <span className={`menu-toggle__icon${menuOpen ? " is-open" : ""}`} aria-hidden="true">
+              <span />
+              <span />
+              <span />
+            </span>
+            <span>{menuOpen ? "Close" : "Menu"}</span>
           </button>
         </div>
         {menuOpen && (
           <nav className="mobile-nav" id="mobile-navigation" aria-label="Mobile navigation">
             {navigation.map((item) => (
-              <a key={item.href} href={item.href} onClick={closeMenu}>{item.label}</a>
+              <a key={item.href} href={item.href} onClick={closeMenu}>
+                <span>{item.label}</span>
+              </a>
             ))}
           </nav>
         )}

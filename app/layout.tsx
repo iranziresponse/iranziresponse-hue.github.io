@@ -22,20 +22,23 @@ export const metadata: Metadata = {
     title: "Response Iranzi | Software Engineering Student",
     description:
       "Makerere software engineering student and builder of Orch, a calmer home for student work.",
-    images: [{ url: "/images/response.jpg", alt: "Response Iranzi" }],
+    images: [{
+      url: "/images/response-portrait.webp",
+      alt: "Response Iranzi in a dark suit beside a bright window",
+    }],
   },
   twitter: {
     card: "summary_large_image",
     title: "Response Iranzi | Software Engineering Student",
     description: "Practical software for student life and everyday work.",
-    images: ["/images/response.jpg"],
+    images: ["/images/response-portrait.webp"],
   },
 };
 
 export const viewport: Viewport = {
   width: "device-width",
   initialScale: 1,
-  themeColor: "#121011",
+  themeColor: "#11120f",
 };
 
 const themeScript = `try { const saved = localStorage.getItem("theme"); document.documentElement.dataset.theme = saved === "light" || saved === "dark" ? saved : "dark"; } catch { document.documentElement.dataset.theme = "dark"; }`;

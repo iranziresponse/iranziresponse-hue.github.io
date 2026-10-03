@@ -62,24 +62,26 @@ export default function Home() {
         <section className="hero-band" id="top" aria-labelledby="hero-title">
           <div className="page-container hero-layout">
             <div className="hero-copy">
-              <p className="hero-location">Makerere University <span>/</span> Kampala</p>
-              <h1 id="hero-title">I build useful software for everyday life.</h1>
+              <p className="hero-eyebrow">Software engineering student <span>—</span> Kampala, Uganda</p>
+              <h1 id="hero-title">
+                I build useful software for <span className="hero-title-accent">everyday life.</span>
+              </h1>
               <p className="hero-lead">
-                I am a software engineering student making practical tools for study, work, and getting around.
+                I am studying software engineering at Makerere University and building practical tools for study, work, and getting around.
               </p>
               <div className="hero-actions">
-                <a className="button button-primary" href="#work">See what I am building</a>
-                <a className="button button-secondary" href="https://orch.spriteteam.com">Meet Orch</a>
+                <a className="button button-primary" href="https://orch.spriteteam.com">Explore Orch <span aria-hidden="true">↗</span></a>
+                <a className="button button-secondary" href="#work">Selected work <span aria-hidden="true">↓</span></a>
               </div>
-              <p className="hero-note">Currently building Orch, my most ambitious project so far.</p>
+              <p className="hero-note">Currently working on Orch, a Windows app for student work and everyday files.</p>
             </div>
             <figure className="portrait-block">
               <div className="portrait-frame">
                 <Image
-                  src="/images/response.jpg"
-                  alt="Response Iranzi wearing a dark suit and white shirt"
+                  src="/images/response-portrait.webp"
+                  alt="Response Iranzi in a dark suit beside a bright window"
                   fill
-                  sizes="(max-width: 760px) 90vw, 42vw"
+                  sizes="(max-width: 760px) 90vw, (max-width: 1100px) 40vw, 440px"
                   className="portrait-image"
                   loading="eager"
                 />
@@ -100,14 +102,9 @@ export default function Home() {
               <p>
                 If it is unsure where a file belongs, it asks. Every move can be checked or undone.
               </p>
-              <div className="featured-facts" aria-label="Orch details">
-                <span>Windows app</span>
-                <span>Makerere-aware</span>
-                <span>Useful anywhere</span>
-              </div>
               <div className="featured-actions">
-                <a className="text-link" href="https://orch.spriteteam.com">Visit Orch</a>
-                <a className="text-link" href="https://github.com/iranziresponse/file-organizer">Explore the source</a>
+                <a className="text-link" href="https://orch.spriteteam.com">Open Orch</a>
+                <a className="text-link" href="https://github.com/iranziresponse/file-organizer">View its source</a>
               </div>
             </div>
             <div className="orch-gallery">
@@ -135,15 +132,15 @@ export default function Home() {
         <section className="projects-section section-space" aria-labelledby="projects-title">
           <div className="page-container">
             <div className="section-heading">
-              <h2 id="projects-title">Other things I am making.</h2>
-              <p>Different problems, one habit: start with what would make someone&apos;s day easier.</p>
+              <p className="section-kicker">Selected work</p>
+              <h2 id="projects-title">Projects I can show you.</h2>
+              <p>Personal builds and experiments. Each listing links to a demo or source when one is available.</p>
             </div>
             <div className="project-grid">
-              {projects.map((project, index) => (
+              {projects.map((project) => (
                 <article className="project-card" key={project.name}>
                   <ProjectGallery name={project.name} slides={project.slides} />
                   <div className="project-card-copy">
-                    <span className="project-index" aria-hidden="true">PROJECT 0{index + 1}</span>
                     <p className="project-type">{project.type}</p>
                     <h3>{project.name}</h3>
                     <p>{project.description}</p>
@@ -160,16 +157,31 @@ export default function Home() {
 
         <section className="about-band section-space" id="about" aria-labelledby="about-title">
           <div className="page-container about-layout">
-            <h2 id="about-title">Good software starts with paying attention.</h2>
+            <h2 id="about-title">I like software that handles the messy parts.</h2>
+            <figure className="about-portrait">
+              <div className="about-portrait__frame">
+                <Image
+                  src="/images/response-closeup.webp"
+                  alt="Close-up portrait of Response Iranzi in a dark suit"
+                  fill
+                  sizes="(max-width: 760px) 82vw, (max-width: 960px) 42vw, 280px"
+                  className="about-portrait__image"
+                />
+              </div>
+              <figcaption>
+                <span>Response Iranzi</span>
+                <span>Makerere University · Kampala</span>
+              </figcaption>
+            </figure>
             <div className="about-copy">
               <p>
-                I study software engineering at Makerere University. I like the distance between spotting an everyday problem and shipping a tool someone can actually try.
+                I study software engineering at Makerere University. Most of the work here is personal projects: things I have built to explore problems I care about, not client case studies.
               </p>
               <p>
-                AI is moving fast, but a clever demo is not the same as a dependable tool. I care about imperfect inputs, honest limits, and giving people a way to recover when software gets something wrong.
+                Nuru explores document scanning with a human review step. Orch focuses on keeping files organized while making moves easy to check or undo. Both start from the same question: what happens when the software is unsure?
               </p>
               <p>
-                I am especially interested in applied AI, student tools, and building for people around East Africa.
+                I am still learning, especially around applied AI and tools for students. The demos and public repositories are here so you can inspect the work directly.
               </p>
             </div>
           </div>
@@ -178,10 +190,10 @@ export default function Home() {
         <section className="contact-band" id="contact" aria-labelledby="contact-title">
           <div className="page-container contact-layout">
             <div>
-              <p className="contact-kicker">Have a good problem?</p>
-              <h2 id="contact-title">Let&apos;s make something useful.</h2>
+              <p className="contact-kicker">Contact</p>
+              <h2 id="contact-title">Have a project or question?</h2>
             </div>
-            <a className="button button-inverse" href="https://www.linkedin.com/in/iranzi-response-428136382">Say hello on LinkedIn</a>
+            <a className="button button-inverse" href="https://www.linkedin.com/in/iranzi-response-428136382">Message me on LinkedIn</a>
           </div>
         </section>
       </main>
