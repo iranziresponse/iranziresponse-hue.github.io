@@ -64,10 +64,10 @@ export const metadata: Metadata = {
 export const viewport: Viewport = {
   width: "device-width",
   initialScale: 1,
-  themeColor: "#08182b",
+  themeColor: "#f1f6fb",
 };
 
-const themeScript = `try { const saved = localStorage.getItem("theme"); document.documentElement.dataset.theme = saved === "light" || saved === "dark" ? saved : "dark"; } catch { document.documentElement.dataset.theme = "dark"; }`;
+const themeScript = `try { const saved = localStorage.getItem("theme"); document.documentElement.dataset.theme = saved === "light" || saved === "dark" ? saved : "light"; } catch { document.documentElement.dataset.theme = "light"; }`;
 
 const structuredData = {
   "@context": "https://schema.org",
