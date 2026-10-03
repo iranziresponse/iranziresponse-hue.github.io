@@ -70,8 +70,8 @@ export default function Home() {
                 I am studying software engineering at Makerere University and building practical tools for study, work, and getting around.
               </p>
               <div className="hero-actions">
-                <a className="button button-primary" href="https://orch.spriteteam.com">Explore Orch <span aria-hidden="true">↗</span></a>
-                <a className="button button-secondary" href="#work">Selected work <span aria-hidden="true">↓</span></a>
+                <a className="button button-primary" href="https://orch.spriteteam.com">Explore Orch</a>
+                <a className="button button-secondary" href="#work">Selected work</a>
               </div>
               <p className="hero-note">Currently working on Orch, a Windows app for student work and everyday files.</p>
             </div>
