@@ -1138,7 +1138,7 @@ img {
 @keyframes section-reveal {
   from {
     opacity: 0;
-    transform: translateY(12px);
+    transform: translateY(22px);
   }
   to {
     opacity: 1;
@@ -1146,10 +1146,23 @@ img {
   }
 }
 
-@keyframes card-reveal {
+@keyframes scroll-image-reveal {
   from {
     opacity: 0;
     translate: 0 18px;
+    scale: 0.985;
+  }
+  to {
+    opacity: 1;
+    translate: 0 0;
+    scale: 1;
+  }
+}
+
+@keyframes scroll-copy-reveal {
+  from {
+    opacity: 0;
+    translate: 0 12px;
   }
   to {
     opacity: 1;
@@ -1197,19 +1210,61 @@ img {
 
 @supports (animation-timeline: view()) {
   @media (prefers-reduced-motion: no-preference) {
+    .section-heading,
     .featured-copy,
-    .orch-gallery,
     .about-layout > *,
-    .contact-layout > * {
-      animation: section-reveal 460ms cubic-bezier(0.2, 0.7, 0.25, 1) both;
+    .contact-layout > *,
+    .site-footer .footer-layout > * {
+      animation: section-reveal auto both;
+      animation-timing-function: cubic-bezier(0.2, 0.7, 0.25, 1);
       animation-timeline: view();
-      animation-range: entry 0% entry 35%;
+      animation-range: entry 0% entry 52%;
     }
 
     .project-card {
-      animation: card-reveal 520ms cubic-bezier(0.2, 0.7, 0.25, 1) both;
+      view-timeline-name: --project-card;
+      view-timeline-axis: block;
+    }
+
+    .project-gallery {
+      animation: scroll-image-reveal auto both;
+      animation-timing-function: cubic-bezier(0.2, 0.7, 0.25, 1);
+      animation-timeline: --project-card;
+      animation-range: entry 0% entry 54%;
+    }
+
+    .project-card-copy {
+      animation: scroll-copy-reveal auto both;
+      animation-timing-function: cubic-bezier(0.2, 0.7, 0.25, 1);
+      animation-timeline: --project-card;
+      animation-range: entry 17% entry 70%;
+    }
+
+    .orch-gallery {
+      animation: scroll-image-reveal auto both;
+      animation-timing-function: cubic-bezier(0.2, 0.7, 0.25, 1);
       animation-timeline: view();
-      animation-range: entry 0% entry 36%;
+      animation-range: entry 8% entry 62%;
+    }
+
+    .about-layout > :first-child {
+      animation-range: entry 0% entry 48%;
+    }
+
+    .about-layout > :nth-child(2) {
+      animation-range: entry 12% entry 60%;
+    }
+
+    .about-layout > :nth-child(3) {
+      animation-range: entry 22% entry 70%;
+    }
+
+    .contact-layout > :first-child {
+      animation-range: entry 0% entry 50%;
+    }
+
+    .contact-layout > :last-child {
+      animation-range: entry 14% entry 64%;
     }
   }
 
