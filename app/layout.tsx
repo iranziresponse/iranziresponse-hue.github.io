@@ -12,16 +12,37 @@ const poppins = Poppins({
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://iranzi.spriteteam.com"),
-  title: "Response Iranzi | Software Engineering Student",
+  title: "Response Iranzi | Software Engineering Student in Kampala",
   description:
-    "I am a software engineering student at Makerere University building practical tools for study, work, and everyday life.",
+    "Response Iranzi is a software engineering student at Makerere University in Kampala, Uganda, building practical software for student life and everyday work.",
   applicationName: "Response Iranzi Portfolio",
+  alternates: {
+    canonical: "/",
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+      "max-video-preview": -1,
+    },
+  },
+  keywords: [
+    "Response Iranzi",
+    "software engineering student",
+    "Makerere University",
+    "Kampala software developer",
+    "Orch student productivity app",
+    "student software projects",
+  ],
   openGraph: {
     type: "website",
-    url: "https://iranzi.spriteteam.com",
-    title: "Response Iranzi | Software Engineering Student",
-    description:
-      "Makerere software engineering student and builder of Orch, a calmer home for student work.",
+    url: "/",
+    title: "Response Iranzi | Software Engineering Student in Kampala",
+    description: "Software engineering student at Makerere University building Orch and practical software for student life.",
     images: [{
       url: "/images/response-portrait.webp",
       alt: "Response Iranzi in a dark suit beside a bright window",
@@ -29,8 +50,8 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Response Iranzi | Software Engineering Student",
-    description: "Practical software for student life and everyday work.",
+    title: "Response Iranzi | Software Engineering Student in Kampala",
+    description: "Makerere University software engineering student building practical software for student life.",
     images: ["/images/response-portrait.webp"],
   },
 };
@@ -43,13 +64,54 @@ export const viewport: Viewport = {
 
 const themeScript = `try { const saved = localStorage.getItem("theme"); document.documentElement.dataset.theme = saved === "light" || saved === "dark" ? saved : "dark"; } catch { document.documentElement.dataset.theme = "dark"; }`;
 
+const structuredData = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebSite",
+      "@id": "https://iranzi.spriteteam.com/#website",
+      url: "https://iranzi.spriteteam.com/",
+      name: "Response Iranzi",
+      description:
+        "Portfolio of Response Iranzi, a software engineering student at Makerere University in Kampala, Uganda.",
+      inLanguage: "en",
+      publisher: { "@id": "https://iranzi.spriteteam.com/#person" },
+    },
+    {
+      "@type": "Person",
+      "@id": "https://iranzi.spriteteam.com/#person",
+      name: "Response Iranzi",
+      url: "https://iranzi.spriteteam.com/",
+      image: "https://iranzi.spriteteam.com/images/response-portrait.webp",
+      jobTitle: "Software engineering student",
+      address: {
+        "@type": "PostalAddress",
+        addressLocality: "Kampala",
+        addressCountry: "UG",
+      },
+      sameAs: [
+        "https://github.com/iranziresponse",
+        "https://www.linkedin.com/in/iranzi-response-428136382",
+      ],
+    },
+  ],
+};
+
 export default function RootLayout({ children }: { children: ReactNode }) {
   return (
     <html lang="en" className={poppins.variable} suppressHydrationWarning>
       <head>
         <script dangerouslySetInnerHTML={{ __html: themeScript }} />
       </head>
-      <body>{children}</body>
+      <body>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(structuredData).replace(/</g, "\\u003c"),
+          }}
+        />
+        {children}
+      </body>
     </html>
   );
 }

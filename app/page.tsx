@@ -67,7 +67,7 @@ export default function Home() {
                 I build useful software for <span className="hero-title-accent">everyday life.</span>
               </h1>
               <p className="hero-lead">
-                I am studying software engineering at Makerere University and building practical tools for study, work, and getting around.
+                I am Response Iranzi, a software engineering student at Makerere University in Kampala. I build practical tools for study, work, and everyday life.
               </p>
               <div className="hero-actions">
                 <a className="button button-primary" href="https://orch.spriteteam.com">Explore Orch</a>
