@@ -64,7 +64,7 @@ export const metadata: Metadata = {
 export const viewport: Viewport = {
   width: "device-width",
   initialScale: 1,
-  themeColor: "#11120f",
+  themeColor: "#08182b",
 };
 
 const themeScript = `try { const saved = localStorage.getItem("theme"); document.documentElement.dataset.theme = saved === "light" || saved === "dark" ? saved : "dark"; } catch { document.documentElement.dataset.theme = "dark"; }`;

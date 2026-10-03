@@ -35,7 +35,7 @@ export function ThemeToggle() {
     localStorage.setItem("theme", nextTheme);
     document.querySelector('meta[name="theme-color"]')?.setAttribute(
       "content",
-      nextTheme === "dark" ? "#11120f" : "#f2eee6",
+      nextTheme === "dark" ? "#08182b" : "#f1f6fb",
     );
     window.dispatchEvent(new Event("themechange"));
   }
@@ -49,21 +49,16 @@ export function ThemeToggle() {
       title={`Switch to ${dark ? "light" : "dark"} theme`}
       onClick={toggleTheme}
     >
-      <span className="theme-toggle__track" aria-hidden="true">
-        <span className="theme-toggle__thumb">
-          {dark ? (
-            <svg viewBox="0 0 16 16">
-              <path d="M13.2 10.1A5.4 5.4 0 0 1 5.9 2.8a5.5 5.5 0 1 0 7.3 7.3Z" />
-            </svg>
-          ) : (
-            <svg viewBox="0 0 16 16">
-              <circle cx="8" cy="8" r="3" />
-              <path d="M8 1.5v1.3m0 10.4v1.3m6.5-6.5h-1.3M2.8 8H1.5m11.1-4.6-.9.9M4.3 11.7l-.9.9m9.2 0-.9-.9M4.3 4.3l-.9-.9" />
-            </svg>
-          )}
-        </span>
-      </span>
-      <span className="theme-toggle__label">{dark ? "Light" : "Dark"}</span>
+      {dark ? (
+        <svg className="header-icon" viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M20.4 15.5A8.5 8.5 0 0 1 8.5 3.6 8.5 8.5 0 1 0 20.4 15.5Z" />
+        </svg>
+      ) : (
+        <svg className="header-icon" viewBox="0 0 24 24" aria-hidden="true">
+          <circle cx="12" cy="12" r="4" />
+          <path d="M12 2v2m0 16v2m10-10h-2M4 12H2m17.1-7.1-1.4 1.4M6.3 17.7l-1.4 1.4m14.2 0-1.4-1.4M6.3 6.3 4.9 4.9" />
+        </svg>
+      )}
     </button>
   );
 }
@@ -96,7 +91,7 @@ export function SiteHeader() {
             height={40}
             sizes="40px"
           />
-          <span>Response Iranzi</span>
+          <span>Response IRANZI</span>
         </a>
         <nav className="desktop-nav" aria-label="Main navigation">
           {navigation.map((item) => (
@@ -108,16 +103,18 @@ export function SiteHeader() {
           <button
             className="menu-toggle"
             type="button"
+            aria-label={menuOpen ? "Close menu" : "Open menu"}
             aria-expanded={menuOpen}
             aria-controls="mobile-navigation"
             onClick={() => setMenuOpen(!menuOpen)}
           >
-            <span className={`menu-toggle__icon${menuOpen ? " is-open" : ""}`} aria-hidden="true">
-              <span />
-              <span />
-              <span />
-            </span>
-            <span>{menuOpen ? "Close" : "Menu"}</span>
+            <svg className="header-icon" viewBox="0 0 24 24" aria-hidden="true">
+              {menuOpen ? (
+                <path d="m6 6 12 12M18 6 6 18" />
+              ) : (
+                <path d="M4 7h16M4 12h16M4 17h16" />
+              )}
+            </svg>
           </button>
         </div>
         {menuOpen && (

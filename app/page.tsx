@@ -60,20 +60,34 @@ export default function Home() {
       <SiteHeader />
       <main id="main">
         <section className="hero-band" id="top" aria-labelledby="hero-title">
+          <section
+            className="project-marquee"
+            aria-label="Things I build: Orch study tools, Nuru document workflows, VisitKla Kampala routes, and Lumela community maps"
+          >
+            <div className="project-marquee__track" aria-hidden="true">
+              {[0, 1].map((copy) => (
+                <div className="project-marquee__group" key={copy}>
+                  <span>Orch <i>Study tools</i></span>
+                  <span>Nuru <i>Document workflows</i></span>
+                  <span>VisitKla <i>Kampala routes</i></span>
+                  <span>Lumela <i>Community maps</i></span>
+                </div>
+              ))}
+            </div>
+          </section>
           <div className="page-container hero-layout">
             <div className="hero-copy">
-              <p className="hero-eyebrow">Software engineering student based in Kampala, Uganda</p>
+              <p className="hero-eyebrow">Makerere University <span aria-hidden="true">·</span> Kampala, Uganda</p>
               <h1 id="hero-title">
-                I build useful software for <span className="hero-title-accent">everyday life.</span>
+                I turn everyday friction into <span className="hero-title-accent">useful software.</span>
               </h1>
               <p className="hero-lead">
-                I am Response Iranzi, a software engineering student at Makerere University in Kampala. I build practical tools for study, work, and everyday life.
+                I am Response IRANZI, a software engineering student building practical tools for learning, work, and life in Kampala.
               </p>
               <div className="hero-actions">
                 <a className="button button-primary" href="https://orch.spriteteam.com">Explore Orch</a>
                 <a className="button button-secondary" href="#work">Selected work</a>
               </div>
-              <p className="hero-note">Orch helps keep coursework, deadlines, revision, and project files easy to find.</p>
             </div>
             <figure className="portrait-block">
               <div className="portrait-frame">
@@ -86,15 +100,44 @@ export default function Home() {
                   loading="eager"
                 />
               </div>
-              <figcaption>Response Iranzi <span>Software engineering student</span></figcaption>
+              <figcaption>Response IRANZI <span>Software engineering student</span></figcaption>
             </figure>
           </div>
         </section>
 
-        <section className="featured-band section-space" id="work" aria-labelledby="orch-title">
+        <section className="projects-section section-space" id="work" aria-labelledby="projects-title">
+          <div className="page-container">
+            <div className="section-heading">
+              <p className="section-kicker">Selected work</p>
+              <h2 id="projects-title">Small ideas, made useful.</h2>
+              <p>Four independent projects, shaped around the everyday problems they set out to solve.</p>
+            </div>
+            <div className="project-grid">
+              {projects.map((project, index) => (
+                <article className="project-card" key={project.name}>
+                  <ProjectGallery name={project.name} slides={project.slides} />
+                  <div className="project-card-copy">
+                    <p className="project-type">
+                      <span>{project.type}</span>
+                      <span className="project-number">{String(index + 1).padStart(2, "0")}</span>
+                    </p>
+                    <h3>{project.name}</h3>
+                    <p>{project.description}</p>
+                    <div className="project-links">
+                      {project.demo && <a href={project.demo} target="_blank" rel="noreferrer">Try the demo</a>}
+                      <a href={project.source} target="_blank" rel="noreferrer">View source</a>
+                    </div>
+                  </div>
+                </article>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        <section className="featured-band section-space" aria-labelledby="orch-title">
           <div className="page-container featured-layout">
             <div className="featured-copy">
-              <p className="section-kicker">The project I am proudest of</p>
+              <p className="section-kicker">Featured project</p>
               <h2 id="orch-title">Orch gives your work a place to land.</h2>
               <p>
                 Your Downloads folder should not decide how chaotic your week feels. Orch helps keep coursework, deadlines, revision, and project files in places you can find again.
@@ -129,32 +172,6 @@ export default function Home() {
           </div>
         </section>
 
-        <section className="projects-section section-space" aria-labelledby="projects-title">
-          <div className="page-container">
-            <div className="section-heading">
-              <p className="section-kicker">Selected work</p>
-              <h2 id="projects-title">Projects I can show you.</h2>
-              <p>Personal builds and experiments. Each listing links to a demo or source when one is available.</p>
-            </div>
-            <div className="project-grid">
-              {projects.map((project) => (
-                <article className="project-card" key={project.name}>
-                  <ProjectGallery name={project.name} slides={project.slides} />
-                  <div className="project-card-copy">
-                    <p className="project-type">{project.type}</p>
-                    <h3>{project.name}</h3>
-                    <p>{project.description}</p>
-                    <div className="project-links">
-                      {project.demo && <a href={project.demo} target="_blank" rel="noreferrer">Try the demo</a>}
-                      <a href={project.source} target="_blank" rel="noreferrer">View source</a>
-                    </div>
-                  </div>
-                </article>
-              ))}
-            </div>
-          </div>
-        </section>
-
         <section className="about-band section-space" id="about" aria-labelledby="about-title">
           <div className="page-container about-layout">
             <h2 id="about-title">I like software that handles the messy parts.</h2>
@@ -169,7 +186,7 @@ export default function Home() {
                 />
               </div>
               <figcaption>
-                <span>Response Iranzi</span>
+                <span>Response IRANZI</span>
                 <span>Makerere University · Kampala</span>
               </figcaption>
             </figure>
@@ -199,7 +216,7 @@ export default function Home() {
       </main>
       <footer className="site-footer">
         <div className="page-container footer-layout">
-          <a className="footer-name" href="#top">Response Iranzi</a>
+          <a className="footer-name" href="#top">Response IRANZI</a>
           <p>Software engineering student at Makerere University, Kampala.</p>
           <div className="footer-links">
             <a href="https://github.com/iranziresponse">GitHub</a>
