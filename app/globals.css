@@ -612,6 +612,10 @@ img {
   transition: transform 600ms cubic-bezier(0.2, 0.7, 0.25, 1);
 }
 
+.orch-screen-secondary img {
+  transform-origin: 65% 50%;
+}
+
 .orch-screen:hover,
 .orch-screen:focus-visible {
   transform: translateY(-4px);
@@ -630,6 +634,7 @@ img {
 
 .orch-screen:hover img,
 .orch-screen:focus-visible img {
+  animation: none;
   transform: scale(1.025);
 }
 
@@ -760,6 +765,7 @@ img {
 
 .project-card:hover .project-gallery-image.is-active,
 .project-card:focus-within .project-gallery-image.is-active {
+  animation: none;
   transform: scale(1.035);
 }
 
@@ -1088,6 +1094,48 @@ img {
     opacity: 1;
     translate: 0 0;
     scale: 1;
+  }
+}
+
+@keyframes portrait-image-drift {
+  from {
+    object-position: center 22%;
+  }
+  to {
+    object-position: center 27%;
+  }
+}
+
+@keyframes screenshot-pan {
+  from {
+    transform: scale(1.015) translate3d(-0.25%, 0.2%, 0);
+  }
+  to {
+    transform: scale(1.055) translate3d(0.25%, -0.2%, 0);
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .portrait-image,
+  .about-portrait__image {
+    animation: portrait-image-drift 18s ease-in-out infinite alternate;
+  }
+
+  .portrait-block:hover .portrait-image,
+  .about-portrait:hover .about-portrait__image {
+    animation-play-state: paused;
+  }
+
+  .orch-screen img {
+    animation: screenshot-pan 20s ease-in-out infinite alternate;
+  }
+
+  .orch-screen-secondary img {
+    animation-delay: -8s;
+  }
+
+  .project-gallery-image.is-active {
+    animation: screenshot-pan 16s ease-in-out infinite alternate;
   }
 }
 

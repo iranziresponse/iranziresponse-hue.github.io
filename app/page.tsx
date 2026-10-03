@@ -7,7 +7,7 @@ const projects = [
     name: "VisitKla",
     type: "Local navigation",
     description:
-      "Landmark directions and boda fare guidance for a defined part of Kampala. Built around how people actually explain a route.",
+      "Landmark-based directions and boda fare guidance for Zone 1 of Kampala. A focused MVP built around local landmarks rather than road distances.",
     demo: "https://visit-kla.vercel.app",
     source: "https://github.com/iranziresponse/VisitKla",
     slides: [
@@ -31,7 +31,7 @@ const projects = [
     name: "Nuru",
     type: "Document workflow",
     description:
-      "Invoice and statement extraction with OCR and human review. Its evaluation is candid about the gap between synthetic tests and real receipts.",
+      "An OCR workflow for invoice and statement data with human review. It reports synthetic and real-receipt benchmark results separately, showing how accuracy changes on real documents.",
     source: "https://github.com/iranziresponse/Nuru",
     slides: [
       { src: "/images/nuru-scan.png", alt: "Nuru document scan screen", caption: "Scan a document" },
@@ -62,7 +62,7 @@ export default function Home() {
         <section className="hero-band" id="top" aria-labelledby="hero-title">
           <div className="page-container hero-layout">
             <div className="hero-copy">
-              <p className="hero-eyebrow">Software engineering student <span>—</span> Kampala, Uganda</p>
+              <p className="hero-eyebrow">Software engineering student based in Kampala, Uganda</p>
               <h1 id="hero-title">
                 I build useful software for <span className="hero-title-accent">everyday life.</span>
               </h1>
@@ -73,7 +73,7 @@ export default function Home() {
                 <a className="button button-primary" href="https://orch.spriteteam.com">Explore Orch</a>
                 <a className="button button-secondary" href="#work">Selected work</a>
               </div>
-              <p className="hero-note">Currently working on Orch, a Windows app for student work and everyday files.</p>
+              <p className="hero-note">Orch helps keep coursework, deadlines, revision, and project files easy to find.</p>
             </div>
             <figure className="portrait-block">
               <div className="portrait-frame">
@@ -178,10 +178,10 @@ export default function Home() {
                 I study software engineering at Makerere University. Most of the work here is personal projects: things I have built to explore problems I care about, not client case studies.
               </p>
               <p>
-                Nuru explores document scanning with a human review step. Orch focuses on keeping files organized while making moves easy to check or undo. Both start from the same question: what happens when the software is unsure?
+                Nuru extracts document data for human review and reports its limits on real receipts. Orch organizes files while making moves easy to inspect and undo. Both start from the same question: what should software do when it is unsure?
               </p>
               <p>
-                I am still learning, especially around applied AI and tools for students. The demos and public repositories are here so you can inspect the work directly.
+                I am especially interested in practical AI, student tools, and software built for East African users. The demos and public repositories are here so you can inspect the work directly.
               </p>
             </div>
           </div>
