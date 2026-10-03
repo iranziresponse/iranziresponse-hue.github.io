@@ -49,6 +49,8 @@ export const metadata: Metadata = {
     images: [{
       url: "/images/response-portrait.webp",
       alt: "Response Iranzi in a dark suit beside a bright window",
+      width: 952,
+      height: 1280,
     }],
   },
   twitter: {
@@ -79,13 +81,33 @@ const structuredData = {
         "Portfolio of Response Iranzi, a software engineering student at Makerere University in Kampala, Uganda.",
       inLanguage: "en",
       publisher: { "@id": "https://iranzi.spriteteam.com/#person" },
+      image: { "@id": "https://iranzi.spriteteam.com/#portrait" },
+    },
+    {
+      "@type": "WebPage",
+      "@id": "https://iranzi.spriteteam.com/#webpage",
+      url: "https://iranzi.spriteteam.com/",
+      name: "Response Iranzi | Software Engineering Student in Kampala",
+      isPartOf: { "@id": "https://iranzi.spriteteam.com/#website" },
+      primaryImageOfPage: { "@id": "https://iranzi.spriteteam.com/#portrait" },
+      mainEntity: { "@id": "https://iranzi.spriteteam.com/#person" },
+    },
+    {
+      "@type": "ImageObject",
+      "@id": "https://iranzi.spriteteam.com/#portrait",
+      url: "https://iranzi.spriteteam.com/images/response-portrait.webp",
+      contentUrl: "https://iranzi.spriteteam.com/images/response-portrait.webp",
+      width: 952,
+      height: 1280,
+      caption: "Response Iranzi, software engineering student at Makerere University",
     },
     {
       "@type": "Person",
       "@id": "https://iranzi.spriteteam.com/#person",
       name: "Response Iranzi",
+      alternateName: "Iranzi Response",
       url: "https://iranzi.spriteteam.com/",
-      image: "https://iranzi.spriteteam.com/images/response-portrait.webp",
+      image: { "@id": "https://iranzi.spriteteam.com/#portrait" },
       jobTitle: "Software engineering student",
       address: {
         "@type": "PostalAddress",
