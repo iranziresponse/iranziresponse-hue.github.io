@@ -117,6 +117,7 @@ const structuredData = {
       sameAs: [
         "https://github.com/iranziresponse",
         "https://www.linkedin.com/in/iranzi-response-428136382",
+        "https://x.com/responseiranzi",
       ],
     },
   ],

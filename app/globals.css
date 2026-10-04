@@ -1030,6 +1030,19 @@ img {
   font-size: 13px;
 }
 
+.footer-social-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.footer-social-icon {
+  width: 0.9rem;
+  height: 0.9rem;
+  flex: none;
+  fill: currentColor;
+}
+
 @keyframes rise-in {
   from {
     opacity: 0;

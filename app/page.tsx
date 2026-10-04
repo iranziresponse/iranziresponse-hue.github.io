@@ -206,6 +206,12 @@ export default function Home() {
           <div className="footer-links">
             <a href="https://github.com/iranziresponse">GitHub</a>
             <a href="https://www.linkedin.com/in/iranzi-response-428136382">LinkedIn</a>
+            <a className="footer-social-link" href="https://x.com/responseiranzi" aria-label="X profile (@responseiranzi)">
+              <svg className="footer-social-icon" viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M18.901 1.153h3.68l-8.04 9.19 9.46 12.504h-7.406l-5.8-7.584-6.636 7.584h-3.68l8.6-9.83L.319 1.153h7.594l5.243 6.93 6.064-6.93zm-1.29 19.49h2.039L6.486 3.24H4.298l13.313 17.403z" />
+              </svg>
+              <span>X</span>
+            </a>
             <a href="https://orch.spriteteam.com">Orch</a>
           </div>
         </div>
