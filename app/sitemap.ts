@@ -9,6 +9,10 @@ export default function sitemap(): MetadataRoute.Sitemap {
       lastModified: new Date(),
       changeFrequency: "monthly",
       priority: 1,
+      images: [
+        "https://iranzi.spriteteam.com/images/response-portrait.webp",
+        "https://iranzi.spriteteam.com/images/response-closeup.webp",
+      ],
     },
   ];
 }
